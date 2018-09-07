@@ -15,7 +15,8 @@
 <body>
 
 <header class="header">
-    <h1 class="logo">Demo</h1>
+
+    <h1 style="padding-left: 10px" class="logo">Demo</h1>
     <ul class="navi">
         {% if is_granted('ROLE_USER') %}
             <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
