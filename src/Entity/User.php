@@ -26,6 +26,20 @@ class User extends BaseUser
      */
     protected $id;
 
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $firstName;
+
+    /**
+     * @param mixed $firstName
+     */
+    public function setFirstName($firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
     /**
      * @return mixed
      */
@@ -33,6 +47,17 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+
+
 
 
 }
