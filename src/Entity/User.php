@@ -32,13 +32,7 @@ class User extends BaseUser
      */
     private $firstName;
 
-    /**
-     * @param mixed $firstName
-     */
-    public function setFirstName($firstName): void
-    {
-        $this->firstName = $firstName;
-    }
+
 
     /**
      * @return mixed
@@ -48,6 +42,16 @@ class User extends BaseUser
         return $this->id;
     }
 
+
+    /**
+     * @param mixed $firstName
+     */
+    public function setFirstName($firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+
     /**
      * @return mixed
      */
@@ -56,8 +60,16 @@ class User extends BaseUser
         return $this->firstName;
     }
 
-
-
-
+    /**
+     * Overridden so that username is now optional
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->setUsername($email);
+        return parent::setEmail($email);
+    }
 
 }
