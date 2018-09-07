@@ -14,10 +14,12 @@ use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 class RedirectAfterRegistrationSubscriber implements EventSubscriberInterface
 
 {
+    use TargetPathTrait;
 
     private $router;
 
@@ -28,7 +30,12 @@ class RedirectAfterRegistrationSubscriber implements EventSubscriberInterface
 
     public function onRegistrationSuccess(FormEvent $event)
     {
-        $url = $this->router->generate('homepage');
+        $url = $this->getTargetPath($event->getRequest()->getSession(), 'main');
+
+        if (!$url) {
+            $url = $this->router->generate('homepage');
+        }
+
         $response = new RedirectResponse($url);
         $event->setResponse($response);
 

@@ -40,3 +40,8 @@ services:
         autowire: true
         tags:
             - { name: kernel.event_subscriber }
+
+    app.markdown_transformer:
+        class: App\Service\MarkdownTransformer
+        public: true
+        arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
